@@ -1,235 +1,142 @@
-start the project first go to cmd and type following line
+Sreach : reactjs legecy  on browser
+Create React App
+in cmd
 
-npm init -y
-//package -lock json created
+npx create-react-app my-app
 
-npm i express mongoose ejs
-//
+cd my-app
 
-open cmd
-1.for server mongodb 
-1.1       d C:\Program Files\MongoDB\Server\4.2\bin
-1.2       mongod.exe
+npm start
 
-2.client
-2.1       cd C:\Program Files\MongoDB\Server\4.2\bin
-2.2       mongo d
+//defalut localhost of react
+http://localhost:3000/
 
 
-after that in package.json 
+delete all src and public files
 
-"scripts": {
-    "start": "nodemon index.js"
-  }
+create file index.js in src folder
 
+//we can made made mobile application  :react
 
-we use nodemon index.js for update my file word by word no need to run again again
+create file index.html in public folder
 
 
-********************************
+main ingredient of react not merge
+ "react": "^18.3.1",
+    "react-dom": "^18.3.1",
 
-after that create index.js
-in that file write down following code
 
-const express = require('express');
-const mongoose = require('mongoose');
+***********in index.js
+import React from 'react';
+console.log(React);
+    react :object
 
 
-***************************
+ReactDOM is "object" of react-dom library
+render is used for printing like cout in c++ and system.out.println() in java
 
-after create folder database
-craete file db.js
-go to npmjs website
-search mongoose for connecting to the database
-go to installing
+document.getElementById("root"):
+Fetches the DOM element with the ID root
 
 
-const mongoose = require('mongoose');
+with the help of babel compiler we can easily access internally our task
+like
+result.render(
+    <ul>
+        <li>{username}</li>
+        <li>{age}</li>
+    </ul>
+)
 
-//in overview
-await mongoose.connect('mongodb://127.0.0.1/my_database');
 
+two types of components class and function
+must be first letter capital
+must be return something
 
 
+in src 
+create App.js
+Content.js
+Header.js
+export means we can any where
 
 
+//19/11/24
 
+cmd
+install bootstrap in my-app folder
+cd my-app
+npm i bootstrap
 
-                                         ****
-                                         db.js
-     const mongoose = require("mongoose");
+in index.js
+bootstrap css import in index.js
+we can also add js
+below link paste in index.js
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-async function dbconnection() {
-    var connection = await mongoose.connect(
-      "mongodb://127.0.0.1:27017/userdetails"
-    );
-    return connection;
-}
+got to bootstrap and search navbar
+copy code paste in header.js return ()
+in round brackets
 
-module.exports = dbconnection;                                    
+npm start in terminal automatic localhost will open
 
+create .container>.row>.col-xl-3 in Content
 
 
+create Product.js
+shortcut     rfc  enter
+code will display
 
-***************************************************
-index.js
+in content.js
+col-xl-3   <Product />
+just type Product and click on suggestions automatic product will import
 
-const db = require('./database/db.js');
-db(); //its function
+unchangable data props
+reusable data
+<Product name="Spark" price="2500" />
 
 
-var app = express(); //undefined
+creat 3 component in component login,home,register
+rfc enter
+https://reactrouter.com/
 
-app.use(express.json());  //our app is undefined datatatype to change that function we use this line
+npm install react-router-dom  
 
+create one file in src all letters are small  projectroute.js
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 
-*******************************
-create views folder
-in that folder 
-create 2 Files    adduser.ejs     showuser.ejs  menu.ejs
+http://localhost:3000                 Home
 
-in menu.ejs
-go to bootstraps website and put both lines add here
- search nav#
- paste code
+http://localhost:3000/loginpage      Login
 
- go to adduser
- <div class="container">
-    <h1>Add user</h1>
-</div>
+http://localhost:3000/contentpage     Content
 
-go to showuser
-<div class="container">
-    <h1>Show user</h1>
-</div>
+http://localhost:3000/registerpage     Register
 
-//in template we embed js and html
+every element has closing in react
+ let x1 = useRef(); any keyword start from use called as hook
 
-in adduser and showuser.ejs
-<%-include('menu')%> - for ejas
+ var[count,setCount]=useState(0)(hoooook)
 
+ count=state variable(100% changable)
+ update 
+ state variable
+ dispatcher function
 
-in index.jsapp.get('/add', function (req, res) {
-    res.render('adduser.ejs');
-});
+ props use for decorate 
+ not changable
 
+when you visit the component use effect hook will called
 
-app.get("/show", function (req, res) {
-  res.render("showuser.ejs");
-});
+if we remove  }, []); then continuosly api will called
 
-app.listen(9000);
 
- *******************
- in cmd type             npm start
+3rd party api fetch by using axios
+cd my-app
 
- ****************
- go to browser
-1st brow.
- localhost:9000/add
-2nd brow.
- localhost:9000/show
-
-adduser form created and  table s in showuser
-
-
-  <li class="nav-item">
-          <a class="nav-link" href="/add">Add User</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/show">Show User</a>
-        </li>
-
-
-
-        index.js
-        create schema
-        const Schema = mogoose.Schema;
-        const userschema = new Schema(  {
-        Name: String,
-        Email: String,
-        mobile:Number
-    });
-   
-
-
-    //in mongoose last ch is s plural
-    const usermodel = mongoose.model("newusers", userschema);//newuser is collection
-
-
-show dbs
-
-use userdetails
-
-db.createCollection('newusers');
-
-show collections
-
-use newusers
-
-db.newusers.insert([{
- "Name":"Mayuri",
- "Email":"mayu@gmail.com",
- "Mobile No":1234567898}
- ,
- {
- "Name":"Ananya",
- "Email":"anu@gmail.com",
- "Mobile No":1234567898}])
-;
-
- db.newusers.find();
-
-
-
-
- in adduser
- <form action="/useraction" method="Post">
-
- index.js
- app.post("/useraction", function (req, res) {
-     console.log(req.body);
-})
-
-
-
-
-//form related data will be fetch by using this url
-app.use(express.urlencoded());
-
-//if we not add this line then in terminal output is {}{}{
-
-}
-
-
-index.js
-
-app.post("/useraction", async function (req, res) {
-  //console.log(req.body);
-  try {
-    var record = new usermodel(req.body);
-    await record.save();
-    res.redirect("/show");
-  } catch (err) {
-    res.send(err.message);
-  }
-});
-
-
-
-
-
-nodemailer search on chrome copy that link paste in cmd
-npm install nodemailer
-
-add this line to top
-const nodemailer=require("nodemailer");
-
-
-
-
-
-user: "mayuribadgujar1998@gmail.com",
-pass: "zbta yluk yawl vrsr",
+npm i axios
