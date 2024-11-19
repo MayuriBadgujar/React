@@ -1,0 +1,34 @@
+<%-include('menu')%>
+
+<div class="container">
+  <h1>Show user</h1>
+  <!-- <%=data%> -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile No.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <th scope="row">#</th>
+        <td scope="col">Name</td>
+        <td scope="col">Email</td>
+        <td scope="col">Mobile No.</td>
+      </tr> -->
+
+      <% data.forEach(function(value){%>
+      <tr>
+        <th scope="row">1</th>
+        <td><%=value.Name%></td>
+        <td><%=value.Email%></td>
+        <td><%=value.mobile%></td>
+      </tr>
+
+      <%})%>
+    </tbody>
+  </table>
+</div>
